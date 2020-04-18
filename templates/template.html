@@ -79,6 +79,35 @@
                           }
                         });
                     });
+                    $("a#call_takeBet").click(function(){
+                        var player2Choice = $("input#player2Choice").val();
+                        contractInstance.takeBet(player2Choice, {from:web3.eth.accounts[0]}, function(error, result){
+                          if (error) {
+                              alert("Please, connect to the network");
+                              reject(error);
+                          }
+                        });
+                    });  
+                    $("a#call_cancel").click(function(){
+                        contractInstance.cancel(function(error, result){
+                          if (error) {
+                              alert("Please, connect to the network");
+                              reject(error);
+                          } else {
+                              $("span#betStatus").text("Bet Cancelled");
+                          }
+                        });
+                    });  
+                    $("a#call_reveal").click(function(){
+                        var choice = $("input#choice").val();
+                        var password = $("input#password").val();
+                        contractInstance.reveal(choice,password, {from:web3.eth.accounts[0]}, function(error, result){
+                          if (error) {
+                              alert("Please, connect to the network");
+                              reject(error);
+                          }
+                        });
+                    });              
                 }
                     
                 else {
@@ -132,6 +161,22 @@
                   <footer>
                       <a href="#" id="call_getPw" class="button special">Get Pw</a>
                     </footer>
+                <p> Take Bet <input type="bool" id="player2Choice" value="0"/></p>
+                  <footer>
+                    <a href="#" id="call_takeBet" class="button special">Take Bet</a>
+                  </footer>
+                  <p><span id="betStatus">0</span><p>
+                    <footer>
+                        <a href="#" id="call_cancel" class="button special">Cancel Bet</a>
+                      </footer>
+                    </footer>    
+                  <p> Input Winning Choice: <input type="bool" id="choice" value="true"/></p>
+                  <p> Input Password: <input type="number" id="password" value="0"/></p>
+                   <footer>
+                       <a href="#" id="call_reveal" class="button special">Reveal</a>
+                   </footer>
+                
+
                 
                             <br />
                             <header>
