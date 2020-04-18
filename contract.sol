@@ -57,6 +57,13 @@ contract Lottery {
         player2.transfer(address(this).balance);
     }
 
+    function claimTimeout2() public {
+        require(now >= expiration);
+
+        player2.transfer(address(this).balance);
+    }
+
+
 
     function setNumber(uint _number) public {
         number = _number;
