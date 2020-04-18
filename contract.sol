@@ -101,6 +101,10 @@ contract Lottery {
         return(betAmt);
     }
 
+    function getPw() view public returns (uint){
+        return(player1Password);
+    }
+
     
 
 }

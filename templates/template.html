@@ -51,7 +51,7 @@
                         });
                     });
                     $("a#call_setBet").click(function(){
-                        var betAmt = $("input#number").val();
+                        var betAmt = $("input#betAmt").val();
                         contractInstance.setBet(betAmt, {from:web3.eth.accounts[0]}, function(error, result){
                           if (error) {
                               alert("Please, connect to the network");
@@ -69,7 +69,18 @@
                           }
                         });
                     });
+                    $("a#call_getPw").click(function(){
+                        contractInstance.getPw(function(error, result){
+                          if (error) {
+                              alert("Please, connect to the network");
+                              reject(error);
+                          } else {
+                              $("span#player1Password").text(result);
+                          }
+                        });
+                    });
                 }
+                    
                 else {
                     alert("Please, install Metamask!");
                 }
@@ -104,12 +115,11 @@
   							<footer>
   								<a href="#" id="call_getNumber" class="button special">Get number</a>
   							</footer>
-                            <p>New value: <input type="text" id="number" value="0" /></p>
+                            <p>Set Number: <input type="text" id="number" value="0" /></p>
                             <footer>
   								<a href="#" id="call_setNumber" class="button special">Set number</a>
-                </footer>
-    
-                            <p> New Contract: <input type="text" id="betAmt" value="0"/></p>
+                </footer>    
+                            <p> Set Bet: <input type="text" id="betAmt" value="0"/></p>
                             <footer>
                   <a href="#" id="call_setBet" class="button special">Set commitment</a>
                 </footer>
@@ -118,6 +128,11 @@
                   <footer>
                     <a href="#" id="call_getBet" class="button special">Get Bet</a>
                   </footer>
+                <p><span id="player1Password">0</span><p>
+                  <footer>
+                      <a href="#" id="call_getPw" class="button special">Get Pw</a>
+                    </footer>
+                
                             <br />
                             <header>
 
