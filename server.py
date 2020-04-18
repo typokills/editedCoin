@@ -19,7 +19,7 @@ Lottery = w3.eth.contract(abi=contract_interface['abi'],
                           bytecode=contract_interface['bin'])
 
 # w3.personal.unlockAccount(w3.eth.accounts[0], '') #  Not needed with Ganache
-tx_hash = Lottery.constructor().transact({'from':w3.eth.accounts[0]})
+tx_hash = Lottery.constructor(123).transact({'from':w3.eth.accounts[0]})
 tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
 
 # Contract Object
